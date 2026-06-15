@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# 模型权重
+*.pt
+*.pkl
+
+# 数据库
+*.db
+
+# API 密钥（如需本地保留真实配置）
+AI智能问答系统/config_local.py
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
