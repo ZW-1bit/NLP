@@ -2,6 +2,25 @@
 
 自然语言处理课程实验项目，包含中文分词、词向量与句子相似度、CNN/RNN 文本分类、AI 智能问答系统四个实验。
 
+## 环境依赖
+
+| 包 | 版本 | 用途 |
+|---|---|---|
+| Python | 3.10+ | 运行环境 |
+| PyTorch | 2.12.0 | 实验1/2/3 模型训练与推理 |
+| NumPy | 2.1.3 | 数值计算 |
+| scikit-learn | 1.6.1 | 实验2 余弦相似度 |
+| Flask | 3.1.0 | 智能问答系统 Web 服务 |
+| OpenAI | 2.41.0 | DeepSeek API 调用 |
+| python-dotenv | 1.1.0 | 从 .env 加载环境变量 |
+| jieba | 0.34 | 中文分词（离线法律问答） |
+
+一键安装：
+
+```bash
+pip install torch numpy scikit-learn flask openai python-dotenv jieba
+```
+
 ## 项目结构
 
 ```
@@ -18,7 +37,8 @@
 │   ├── local_qa.py          # 离线引擎（数学计算 + 法律问答）
 │   ├── dsapi.py             # DeepSeek API 调用
 │   ├── db.py                # SQLite 会话持久化
-│   ├── config.py            # API 配置
+│   ├── config.py            # API 配置（从 .env 读取）
+│   ├── .env                 # API 密钥（不上传，需自行创建）
 │   ├── law_merged.json      # 法律知识库
 │   ├── templates/index.html # 前端页面
 │   └── static/              # 前端静态资源
@@ -89,21 +109,17 @@ python rnn.py
 - **文档上传**：上传文档作为上下文注入
 - **系统提示词**：自定义 System Prompt
 
-### 依赖安装
-
-```bash
-pip install flask openai jieba
-```
-
 ### 配置
 
-编辑 `AI智能问答系统/config.py`，填入 DeepSeek API Key：
+在 `AI智能问答系统/` 目录下创建 `.env` 文件：
 
-```python
-API_KEY = "your-api-key"
-BASE_URL = "https://api.deepseek.com"
-MODEL = "deepseek-chat"
 ```
+DEEPSEEK_API_KEY=你的API密钥
+BASE_URL=https://api.deepseek.com
+MODEL=deepseek-chat
+```
+
+> `.env` 文件已被 `.gitignore` 排除，不会上传到 GitHub。
 
 ### 启动
 
@@ -113,10 +129,3 @@ python app.py
 ```
 
 访问 `http://127.0.0.1:7860` 即可使用。
-
-## 通用依赖
-
-- Python 3.10+
-- PyTorch
-- NumPy
-- scikit-learn（实验 2）
